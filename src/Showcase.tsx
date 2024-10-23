@@ -1,133 +1,208 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { ChevronRight, X } from "lucide-react";
 
 interface Project {
   title: string;
   description: string;
-  image: string;
   technologies: string[];
+  link: string;
 }
 
 const projects: Project[] = [
   {
-    title: "AI-Powered Task Manager",
-    description:
-      "A smart task management application that uses machine learning to prioritize and categorize tasks, improving productivity and workflow efficiency.",
-    image: "/placeholder.svg?height=400&width=600",
+    title: "AI Task Manager",
+    description: "Smart task prioritization using machine learning algorithms.",
     technologies: ["React", "Node.js", "TensorFlow.js", "MongoDB"],
+    link: "https://ai-task-manager.example.com",
   },
   {
-    title: "Blockchain Voting System",
-    description:
-      "A secure and transparent voting system built on blockchain technology, ensuring the integrity and immutability of election results.",
-    image: "/placeholder.svg?height=400&width=600",
+    title: "Blockchain Voting",
+    description: "Secure and transparent voting system built on blockchain.",
     technologies: ["Solidity", "Ethereum", "Web3.js", "React"],
+    link: "https://blockchain-voting.example.com",
   },
   {
-    title: "AR Interior Design App",
-    description:
-      "An augmented reality application that allows users to visualize furniture and decor in their space before making a purchase.",
-    image: "/placeholder.svg?height=400&width=600",
+    title: "AR Interior Design",
+    description: "Visualize furniture in your space with augmented reality.",
     technologies: ["React Native", "ARKit", "ARCore", "Three.js"],
+    link: "https://ar-interior-design.example.com",
   },
   {
-    title: "Eco-Friendly Smart Home Hub",
-    description:
-      "An IoT platform that integrates various smart home devices with a focus on energy efficiency and sustainability.",
-    image: "/placeholder.svg?height=400&width=600",
+    title: "Smart Home Hub",
+    description: "IoT platform for energy-efficient home automation.",
     technologies: ["Python", "Raspberry Pi", "MQTT", "React"],
+    link: "https://eco-smart-home.example.com",
   },
 ];
 
-export default function Showcase() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+const NeonBackground = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const controls = useAnimation();
 
   useEffect(() => {
-    const target = targetRef.current;
-    if (target) {
-      const handleWheel = (event: WheelEvent) => {
-        event.preventDefault();
-        target.scrollLeft += event.deltaY;
-      };
-      target.addEventListener("wheel", handleWheel, { passive: false });
-      return () => target.removeEventListener("wheel", handleWheel);
-    }
-  }, []);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const drawNeonEffect = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height / 2,
+        0,
+        canvas.width / 2,
+        canvas.height / 2,
+        Math.max(canvas.width, canvas.height) / 2
+      );
+
+      gradient.addColorStop(0, "rgba(255, 255, 255, 0.03)");
+      gradient.addColorStop(0.5, "rgba(150, 150, 255, 0.05)");
+      gradient.addColorStop(1, "rgba(0, 0, 50, 0.01)");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    };
+
+    controls.start({
+      opacity: [0.5, 1, 0.5],
+      scale: [1, 1.1, 1],
+      rotate: [0, 5, -5, 0],
+      transition: {
+        duration: 10,
+        ease: "easeInOut",
+        repeat: Infinity,
+      },
+    });
+
+    const animate = () => {
+      drawNeonEffect();
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, [controls]);
 
   return (
-    <section ref={targetRef} className="bg-gray-100 py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-light text-gray-900 mb-12 text-center">
+    <motion.canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-none"
+      style={{ mixBlendMode: "screen" }}
+      animate={controls}
+    />
+  );
+};
+
+export default function NeonMinimalistPortfolioShowcase() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  return (
+    <section className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+      <NeonBackground />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <h2 className="text-5xl font-light text-gray-900 mb-16 text-center">
           Portfolio Showcase
         </h2>
 
-        <motion.div style={{ x }} className="flex space-x-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
-              key={index}
-              className="flex-shrink-0 w-[600px] bg-white rounded-lg shadow-lg overflow-hidden"
-              initial={{ opacity: 0, y: 50 }}
+              key={project.title}
+              className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-lg shadow-lg overflow-hidden cursor-pointer"
+              whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
+              onClick={() => setSelectedProject(project)}
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                width={600}
-                height={400}
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-                  {project.title}
+              <div className="p-8 h-full flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 mb-6">{project.description}</p>
+                </div>
+                <div className="flex items-center text-gray-800">
+                  <span className="mr-2">View Details</span>
+                  <ChevronRight size={20} />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-lg shadow-xl max-w-3xl w-full overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-8 relative">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                  aria-label="Close"
+                >
+                  <X size={24} />
+                </button>
+                <h3 className="text-3xl font-semibold text-gray-800 mb-4">
+                  {selectedProject.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
+                <p className="text-gray-600 mb-6">
+                  {selectedProject.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {selectedProject.technologies.map((tech) => (
                     <span
-                      key={techIndex}
-                      className="px-2 py-1 bg-gray-200 text-gray-700 text-sm rounded-full"
+                      key={tech}
+                      className="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-gray-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-700 transition-colors"
+                >
+                  View Project
+                </a>
               </div>
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Abstract background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-0 w-64 h-64 bg-gradient-to-br from-gray-200 to-transparent rounded-full mix-blend-multiply"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-            rotate: [0, 45, 0],
-          }}
-          transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-tl from-gray-300 to-transparent rounded-full mix-blend-multiply"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.1, 1],
-            rotate: [0, -45, 0],
-          }}
-          transition={{ repeat: Infinity, duration: 25, ease: "easeInOut" }}
-        />
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

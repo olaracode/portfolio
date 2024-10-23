@@ -97,7 +97,7 @@ const careerExperiences: Company[] = [
     roles: [
       {
         title: "Frontend Developer",
-        period: "2015 - 2017",
+        period: "2022 - 2023",
         description:
           "As a Junior Web Developer at CodeCraft Studios, I assisted in the development of websites and web applications. This role provided me with a solid foundation in full-stack development and exposed me to various technologies and best practices.",
         achievements: [
@@ -119,7 +119,7 @@ export default function Career() {
   );
 
   return (
-    <section className="w-full bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="w-full bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -171,7 +171,7 @@ export default function Career() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm"
+                  className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg backdrop-filter backdrop-blur-sm min-h-full"
                 >
                   <h3 className="text-2xl font-semibold text-gray-800 mb-4">
                     {selectedCompany.name}
