@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
-export default function Hero() {
+import { HeaderT } from "@/config";
+export default function Hero({ content }: { content: HeaderT }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -47,16 +47,16 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
         <h1 className="text-6xl sm:text-7xl font-light mb-6 tracking-tight">
-          <span className="block">Octavio Lara</span>
+          <span className="block">{content.title}</span>
         </h1>
         <p className="text-xl sm:text-2xl mb-8 max-w-md font-light text-gray-600">
-          Programador Web Fullstack
+          {content.description}
         </p>
         <a
           href="#work"
           className="px-8 py-3 text-lg font-light bg-gray-900 text-gray-100 rounded-sm hover:bg-gray-800 transition-colors"
         >
-          Ver portafolio
+          {content.button}
         </a>
       </div>
 

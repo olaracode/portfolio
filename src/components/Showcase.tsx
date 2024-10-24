@@ -38,85 +38,11 @@ const projects: Project[] = [
   },
 ];
 
-const NeonBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    const drawNeonEffect = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.max(canvas.width, canvas.height) / 2
-      );
-
-      gradient.addColorStop(0, "rgba(255, 255, 255, 0.03)");
-      gradient.addColorStop(0.5, "rgba(150, 150, 255, 0.05)");
-      gradient.addColorStop(1, "rgba(0, 0, 50, 0.01)");
-
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    };
-
-    controls.start({
-      opacity: [0.5, 1, 0.5],
-      scale: [1, 1.1, 1],
-      rotate: [0, 5, -5, 0],
-      transition: {
-        duration: 10,
-        ease: "easeInOut",
-        repeat: Infinity,
-      },
-    });
-
-    const animate = () => {
-      drawNeonEffect();
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-    };
-  }, [controls]);
-
-  return (
-    <motion.canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
-      style={{ mixBlendMode: "screen" }}
-      animate={controls}
-    />
-  );
-};
-
 export default function NeonMinimalistPortfolioShowcase() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
-      <NeonBackground />
-
       <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-5xl font-light text-gray-900 mb-16 text-center">
           Portfolio Showcase

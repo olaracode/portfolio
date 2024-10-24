@@ -1,21 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-export default function About() {
-  const techStack = [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "GraphQL",
-    "Tailwind CSS",
-    "Framer Motion",
-    "PostgreSQL",
-    "AWS",
-    "Docker",
-  ];
-
+import { AboutT } from "@/config";
+export default function About({ content }: { content: AboutT }) {
   return (
     <section className="w-full bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <motion.div
@@ -37,7 +24,7 @@ export default function About() {
         />
 
         <h2 className="text-4xl font-light text-gray-900 mb-12 text-center relative z-10">
-          About Me
+          {content.title}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
@@ -47,14 +34,9 @@ export default function About() {
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
           >
             <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              Who I Am
+              {content.main.title}
             </h3>
-            <p className="text-gray-600 mb-4">
-              I'm Jane Smith, a full-stack developer crafting elegant, efficient
-              web solutions. With 5+ years in tech, I blend creativity and
-              technical expertise to build user-centric applications that push
-              web boundaries.
-            </p>
+            <p className="text-gray-600 mb-4">{content.main.content}</p>
           </motion.div>
 
           <motion.div
@@ -63,16 +45,14 @@ export default function About() {
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
           >
             <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              Education
+              {content.education.title}
             </h3>
             <ul className="space-y-2">
-              <li className="text-gray-600">
-                MSc Computer Science, Stanford University
-              </li>
-              <li className="text-gray-600">BSc Software Engineering, MIT</li>
-              <li className="text-gray-600">
-                Full-Stack Web Development, Hack Reactor
-              </li>
+              {content.education.content.map((item, i) => (
+                <li className="text-gray-600" key={`edu-${i}`}>
+                  {item}
+                </li>
+              ))}
             </ul>
           </motion.div>
         </div>
@@ -84,12 +64,12 @@ export default function About() {
           transition={{ delay: 0.2 }}
         >
           <h3 className="text-xl font-semibold mb-4 text-gray-800 text-center">
-            Tech Stack
+            Stack
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {techStack.map((tech, index) => (
+            {content.stack.map((tech, index) => (
               <motion.span
-                key={index}
+                key={`stack-${index}`}
                 className="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm"
                 whileHover={{ scale: 1.1, backgroundColor: "#e2e8f0" }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
