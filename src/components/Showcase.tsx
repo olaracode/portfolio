@@ -1,49 +1,14 @@
-"use client";
-
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, X } from "lucide-react";
-import { PortfolioT } from "@/config";
-interface Project {
-  title: string;
-  description: string;
-  technologies: string[];
-  link: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "AI Task Manager",
-    description: "Smart task prioritization using machine learning algorithms.",
-    technologies: ["React", "Node.js", "TensorFlow.js", "MongoDB"],
-    link: "https://ai-task-manager.example.com",
-  },
-  {
-    title: "Blockchain Voting",
-    description: "Secure and transparent voting system built on blockchain.",
-    technologies: ["Solidity", "Ethereum", "Web3.js", "React"],
-    link: "https://blockchain-voting.example.com",
-  },
-  {
-    title: "AR Interior Design",
-    description: "Visualize furniture in your space with augmented reality.",
-    technologies: ["React Native", "ARKit", "ARCore", "Three.js"],
-    link: "https://ar-interior-design.example.com",
-  },
-  {
-    title: "Smart Home Hub",
-    description: "IoT platform for energy-efficient home automation.",
-    technologies: ["Python", "Raspberry Pi", "MQTT", "React"],
-    link: "https://eco-smart-home.example.com",
-  },
-];
+import { PortfolioT, ProjectT } from "@/config";
 
 export default function NeonMinimalistPortfolioShowcase({
   content,
 }: {
   content: PortfolioT;
 }) {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectT | null>(null);
 
   return (
     <section className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">

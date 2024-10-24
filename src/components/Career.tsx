@@ -1,50 +1,5 @@
-"use client";
-
 import { CareerT } from "@/config";
 import { motion } from "framer-motion";
-
-interface WorkExperience {
-  company: string;
-  position: string;
-  period: string;
-  description: string[];
-}
-
-const workExperiences: WorkExperience[] = [
-  {
-    company: "TechNova Solutions",
-    position: "Senior Full Stack Developer",
-    period: "2021 - Present",
-    description: [
-      "Lead development of cloud-native applications using React, Node.js, and AWS",
-      "Implemented CI/CD pipelines, reducing deployment time by 40%",
-      "Mentored junior developers and conducted code reviews",
-      "Optimized database queries, improving application performance by 30%",
-    ],
-  },
-  {
-    company: "DataDrive Inc.",
-    position: "Full Stack Developer",
-    period: "2019 - 2021",
-    description: [
-      "Developed and maintained data-driven web applications using Angular and Django",
-      "Integrated machine learning models into production environments",
-      "Collaborated with data scientists to implement real-time analytics dashboards",
-      "Participated in Agile development processes and sprint planning",
-    ],
-  },
-  {
-    company: "WebFront Creations",
-    position: "Frontend Developer",
-    period: "2017 - 2019",
-    description: [
-      "Created responsive and interactive user interfaces for various client projects",
-      "Implemented advanced animations and transitions using GSAP",
-      "Optimized web performance, achieving a 25% reduction in load times",
-      "Worked closely with designers to ensure pixel-perfect implementations",
-    ],
-  },
-];
 
 export default function AnimatedWorkExperience({
   content,

@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { AboutT } from "@/config";
 export default function About({ content }: { content: AboutT }) {

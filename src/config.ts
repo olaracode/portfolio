@@ -127,13 +127,13 @@ const workExperiencesEN: WorkExperience[] = [
   },
 ];
 
-interface Project {
+export interface ProjectT {
   title: string;
   description: string;
   technologies: string[];
   link: string;
 }
-const projectsES: Project[] = [
+const projectsES: ProjectT[] = [
   {
     title: "'Quake' aplicacion de visualizacion de datos sismicos",
     description:
@@ -197,7 +197,7 @@ export type CareerT = {
 
 export type PortfolioT = {
   title: string;
-  projects: Project[];
+  projects: ProjectT[];
   details: string;
   linkContent: string;
 };
