@@ -7,7 +7,10 @@ export default function AnimatedWorkExperience({
   content: CareerT;
 }) {
   return (
-    <section className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-gray-100">
+    <section
+      className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-gray-100"
+      id="career"
+    >
       <div className="max-w-4xl mx-auto">
         <motion.h2
           className="text-4xl font-light text-gray-900 mb-12 text-center"
@@ -21,7 +24,7 @@ export default function AnimatedWorkExperience({
         <div className="space-y-12">
           {content.experiences.map((experience, index) => (
             <motion.div
-              key={experience.company}
+              key={`${experience.company}-${index}`}
               className="bg-white rounded-lg shadow-md p-6 border border-gray-200"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}

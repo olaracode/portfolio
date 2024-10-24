@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-scroll";
 import { HeaderT } from "@/config";
 export default function Hero({ content }: { content: HeaderT }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -17,7 +18,10 @@ export default function Hero({ content }: { content: HeaderT }) {
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-gray-100 text-gray-900">
+    <div
+      className="relative h-screen w-full overflow-hidden bg-gray-100 text-gray-900"
+      id="#"
+    >
       {/* Subtle grain texture */}
       <div
         className="absolute inset-0 opacity-50"
@@ -52,12 +56,15 @@ export default function Hero({ content }: { content: HeaderT }) {
         <p className="text-xl sm:text-2xl mb-8 max-w-md font-light text-gray-600">
           {content.description}
         </p>
-        <a
-          href="#work"
-          className="px-8 py-3 text-lg font-light bg-gray-900 text-gray-100 rounded-sm hover:bg-gray-800 transition-colors"
+        <Link
+          to="portfolio"
+          spy={true}
+          smooth={true}
+          duration={500}
+          className="px-8 cursor-pointer py-3 text-lg font-light bg-gray-900 text-gray-100 rounded-sm hover:bg-gray-800 transition-colors"
         >
           {content.button}
-        </a>
+        </Link>
       </div>
 
       {/* Minimalist decorative elements */}

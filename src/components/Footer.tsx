@@ -52,7 +52,10 @@ const AnimatedBackground = () => (
 
 export default function Footer({ content }: { content: FooterT }) {
   return (
-    <footer className="relative w-full py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+    <footer
+      className="relative w-full py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden"
+      id="contact"
+    >
       <AnimatedBackground />
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.h2
@@ -73,17 +76,17 @@ export default function Footer({ content }: { content: FooterT }) {
             <p className="mb-6 text-gray-300">{content.description}</p>
             <div className="flex space-x-6">
               <SocialLink
-                href="https://github.com"
+                href="https://github.com/olaracode"
                 icon={Github}
                 label="GitHub"
               />
               <SocialLink
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/octavio-lara-/"
                 icon={Linkedin}
                 label="LinkedIn"
               />
               <SocialLink
-                href="mailto:example@email.com"
+                href="mailto:octavioasapchi@gmail.com"
                 icon={Mail}
                 label="Email"
               />

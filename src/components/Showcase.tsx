@@ -11,7 +11,10 @@ export default function NeonMinimalistPortfolioShowcase({
   const [selectedProject, setSelectedProject] = useState<ProjectT | null>(null);
 
   return (
-    <section className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+    <section
+      className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative"
+      id="portfolio"
+    >
       <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-5xl font-light text-gray-900 mb-16 text-center">
           {content.title}
@@ -20,7 +23,7 @@ export default function NeonMinimalistPortfolioShowcase({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {content.projects.map((project, index) => (
             <motion.div
-              key={project.title}
+              key={`${project.title}-${index}`}
               className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-lg shadow-lg overflow-hidden cursor-pointer"
               whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
               initial={{ opacity: 0, y: 20 }}

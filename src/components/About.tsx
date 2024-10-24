@@ -2,7 +2,10 @@ import { motion } from "framer-motion";
 import { AboutT } from "@/config";
 export default function About({ content }: { content: AboutT }) {
   return (
-    <section className="w-full bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      className="w-full bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      id="about"
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
