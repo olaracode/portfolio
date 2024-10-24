@@ -2,19 +2,20 @@ import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Home, User, Briefcase, Folder, Mail } from "lucide-react";
 import { Link } from "react-scroll";
+import { useTranslation } from "react-i18next";
 
 const navItems = [
-  { name: "Home", href: "#", icon: Home },
-  { name: "About", href: "about", icon: User },
-  { name: "Career", href: "career", icon: Briefcase },
-  { name: "Portfolio", href: "portfolio", icon: Folder },
-  { name: "Contact", href: "contact", icon: Mail },
+  { translationKey: "nav.home", href: "#", icon: Home },
+  { translationKey: "nav.about", href: "about", icon: User },
+  { translationKey: "nav.career", href: "career", icon: Briefcase },
+  { translationKey: "nav.portfolio", href: "portfolio", icon: Folder },
+  { translationKey: "nav.contact", href: "contact", icon: Mail },
 ];
 
 export default function FloatingBottomNav() {
   const [isVisible, setIsVisible] = useState(false);
   const { scrollY } = useScroll();
-
+  const { t } = useTranslation();
   useMotionValueEvent(scrollY, "change", (latest) => {
     const currentScrollY = latest;
     if (currentScrollY > 100) {
@@ -35,7 +36,7 @@ export default function FloatingBottomNav() {
         <div className="flex items-center justify-between h-16">
           {navItems.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               to={item.href}
               spy={true}
               smooth={true}
@@ -43,7 +44,9 @@ export default function FloatingBottomNav() {
               className="flex cursor-pointer flex-col items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
             >
               <item.icon className="h-4 w-4" />
-              <span className="text-xs mt-1">{item.name}</span>
+              <span className="text-xs mt-1">
+                {t(`${item.translationKey}`)}
+              </span>
             </Link>
           ))}
         </div>

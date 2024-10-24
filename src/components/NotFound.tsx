@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 export default function NotFound() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <motion.div
@@ -20,11 +21,9 @@ export default function NotFound() {
           404
         </motion.h1>
         <h2 className="mt-6 text-3xl font-light text-gray-900">
-          Page Not Found
+          {t("404.title")}
         </h2>
-        <p className="mt-2 text-sm text-gray-600">
-          Oops! The page you're looking for doesn't exist or has been moved.
-        </p>
+        <p className="mt-2 text-sm text-gray-600">{t("404.content")}</p>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -35,7 +34,7 @@ export default function NotFound() {
             className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200"
           >
             <ArrowLeft className="mr-2 h-5 w-5" />
-            Back to Home
+            {t("404.link")}
           </Link>
         </motion.div>
       </motion.div>

@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, X } from "lucide-react";
-import { PortfolioT, ProjectT } from "@/config";
-
-export default function NeonMinimalistPortfolioShowcase({
-  content,
-}: {
-  content: PortfolioT;
-}) {
+import { ProjectT } from "@/i18n/types";
+import { useTranslation } from "react-i18next";
+export default function NeonMinimalistPortfolioShowcase() {
   const [selectedProject, setSelectedProject] = useState<ProjectT | null>(null);
-
+  const { t } = useTranslation();
+  const projects = t("portfolio.projects", {
+    returnObjects: true,
+  }) as ProjectT[];
   return (
     <section
       className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative"
@@ -17,11 +16,11 @@ export default function NeonMinimalistPortfolioShowcase({
     >
       <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-5xl font-light text-gray-900 mb-16 text-center">
-          {content.title}
+          {t("portfolio.title")}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {content.projects.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div
               key={`${project.title}-${index}`}
               className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-lg shadow-lg overflow-hidden cursor-pointer"
@@ -39,7 +38,7 @@ export default function NeonMinimalistPortfolioShowcase({
                   <p className="text-gray-600 mb-6">{project.description}</p>
                 </div>
                 <div className="flex items-center text-gray-800">
-                  <span className="mr-2">{content.details}</span>
+                  <span className="mr-2">{t("portfolio.details")}</span>
                   <ChevronRight size={20} />
                 </div>
               </div>
@@ -94,7 +93,7 @@ export default function NeonMinimalistPortfolioShowcase({
                   rel="noopener noreferrer"
                   className="inline-block bg-gray-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-700 transition-colors"
                 >
-                  {content.linkContent}
+                  {t("portfolio.linkContent")}
                 </a>
               </div>
             </motion.div>

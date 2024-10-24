@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
-import { HeaderT } from "@/config";
-export default function Hero({ content }: { content: HeaderT }) {
+import { useTranslation } from "react-i18next";
+export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
+  const { t } = useTranslation();
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -51,10 +51,10 @@ export default function Hero({ content }: { content: HeaderT }) {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
         <h1 className="text-6xl sm:text-7xl font-light mb-6 tracking-tight">
-          <span className="block">{content.title}</span>
+          <span className="block">{t("header.title")}</span>
         </h1>
         <p className="text-xl sm:text-2xl mb-8 max-w-md font-light text-gray-600">
-          {content.description}
+          {t("header.description")}
         </p>
         <Link
           to="portfolio"
@@ -63,7 +63,7 @@ export default function Hero({ content }: { content: HeaderT }) {
           duration={500}
           className="px-8 cursor-pointer py-3 text-lg font-light bg-gray-900 text-gray-100 rounded-sm hover:bg-gray-800 transition-colors"
         >
-          {content.button}
+          {t("header.button")}
         </Link>
       </div>
 

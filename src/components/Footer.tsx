@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Github, Linkedin } from "lucide-react";
-import { FooterT } from "@/config";
+import { useTranslation } from "react-i18next";
 const SocialLink = ({
   href,
   icon: Icon,
@@ -50,7 +50,8 @@ const AnimatedBackground = () => (
   </div>
 );
 
-export default function Footer({ content }: { content: FooterT }) {
+export default function Footer() {
+  const { t } = useTranslation();
   return (
     <footer
       className="relative w-full py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden"
@@ -64,7 +65,7 @@ export default function Footer({ content }: { content: FooterT }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {content.title}
+          {t("footer.title")}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -72,8 +73,8 @@ export default function Footer({ content }: { content: FooterT }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-light mb-6">{content.subtitle}</h3>
-            <p className="mb-6 text-gray-300">{content.description}</p>
+            <h3 className="text-2xl font-light mb-6">{t("footer.subtitle")}</h3>
+            <p className="mb-6 text-gray-300">{t("footer.description")}</p>
             <div className="flex space-x-6">
               <SocialLink
                 href="https://github.com/olaracode"

@@ -1,11 +1,11 @@
-import { CareerT } from "@/config";
 import { motion } from "framer-motion";
-
-export default function AnimatedWorkExperience({
-  content,
-}: {
-  content: CareerT;
-}) {
+import { useTranslation } from "react-i18next";
+import { WorkExperience } from "@/i18n/types";
+export default function AnimatedWorkExperience() {
+  const { t } = useTranslation();
+  const experiences = t("career.experiences", {
+    returnObjects: true,
+  }) as WorkExperience[];
   return (
     <section
       className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-gray-100"
@@ -18,11 +18,11 @@ export default function AnimatedWorkExperience({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {content.title}
+          {t("career.title")}
         </motion.h2>
 
         <div className="space-y-12">
-          {content.experiences.map((experience, index) => (
+          {experiences.map((experience, index) => (
             <motion.div
               key={`${experience.company}-${index}`}
               className="bg-white rounded-lg shadow-md p-6 border border-gray-200"

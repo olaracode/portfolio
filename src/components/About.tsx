@@ -1,9 +1,15 @@
 import { motion } from "framer-motion";
-import { AboutT } from "@/config";
-export default function About({ content }: { content: AboutT }) {
+import { useTranslation } from "react-i18next";
+
+export default function About() {
+  const { t } = useTranslation();
+  const education = t("about.education.content", {
+    returnObjects: true,
+  }) as string[];
+  const stack = t("about.stack", { returnObjects: true }) as string[];
   return (
     <section
-      className="w-full bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="w-full bg-gray -100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
       id="about"
     >
       <motion.div
@@ -25,7 +31,7 @@ export default function About({ content }: { content: AboutT }) {
         />
 
         <h2 className="text-4xl font-light text-gray-900 mb-12 text-center relative z-10">
-          {content.title}
+          {t("about.title")}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
@@ -35,9 +41,9 @@ export default function About({ content }: { content: AboutT }) {
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
           >
             <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              {content.main.title}
+              {t("about.main.title")}
             </h3>
-            <p className="text-gray-600 mb-4">{content.main.content}</p>
+            <p className="text-gray-600 mb-4">{t("about.main.content")}</p>
           </motion.div>
 
           <motion.div
@@ -46,14 +52,16 @@ export default function About({ content }: { content: AboutT }) {
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
           >
             <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              {content.education.title}
+              {t("about.education.title")}
             </h3>
             <ul className="space-y-2">
-              {content.education.content.map((item, i) => (
-                <li className="text-gray-600" key={`edu-${i}`}>
-                  {item}
-                </li>
-              ))}
+              {education.map((item, i) => {
+                return (
+                  <li className="text-gray-600" key={`edu-${i}`}>
+                    {item}
+                  </li>
+                );
+              })}
             </ul>
           </motion.div>
         </div>
@@ -68,7 +76,7 @@ export default function About({ content }: { content: AboutT }) {
             Stack
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {content.stack.map((tech, index) => (
+            {stack.map((tech, index) => (
               <motion.span
                 key={`stack-${index}`}
                 className="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm"
