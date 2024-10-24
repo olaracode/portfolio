@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { ChevronRight, X } from "lucide-react";
-
+import { PortfolioT } from "@/config";
 interface Project {
   title: string;
   description: string;
@@ -38,18 +38,22 @@ const projects: Project[] = [
   },
 ];
 
-export default function NeonMinimalistPortfolioShowcase() {
+export default function NeonMinimalistPortfolioShowcase({
+  content,
+}: {
+  content: PortfolioT;
+}) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
       <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="text-5xl font-light text-gray-900 mb-16 text-center">
-          Portfolio Showcase
+          {content.title}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {content.projects.map((project, index) => (
             <motion.div
               key={project.title}
               className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-lg shadow-lg overflow-hidden cursor-pointer"
@@ -67,7 +71,7 @@ export default function NeonMinimalistPortfolioShowcase() {
                   <p className="text-gray-600 mb-6">{project.description}</p>
                 </div>
                 <div className="flex items-center text-gray-800">
-                  <span className="mr-2">View Details</span>
+                  <span className="mr-2">{content.details}</span>
                   <ChevronRight size={20} />
                 </div>
               </div>
@@ -122,7 +126,7 @@ export default function NeonMinimalistPortfolioShowcase() {
                   rel="noopener noreferrer"
                   className="inline-block bg-gray-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-700 transition-colors"
                 >
-                  View Project
+                  {content.linkContent}
                 </a>
               </div>
             </motion.div>

@@ -127,11 +127,56 @@ const workExperiencesEN: WorkExperience[] = [
   },
 ];
 
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  link: string;
+}
+const projectsES: Project[] = [
+  {
+    title: "'Quake' aplicacion de visualizacion de datos sismicos",
+    description:
+      "Quake es una breve aplicacion creada como prueba tecnica, esta aplicacion posee un comando para recopilar informacion sismica de la API earthquake.gov y la muestra en un mapa",
+    technologies: [
+      "Ruby On Rails",
+      "PostgreSQL",
+      "React.js",
+      "Framer Motion",
+      "Chakra-UI",
+      "Docker",
+      "Docker Composer",
+    ],
+    link: "https://github.com/olaracode/quake",
+  },
+  {
+    title: "SvelteKit, FastAPI, Docker, Postgresql, Redis",
+    description:
+      "Plantilla basica para crear aplicaciones usando SvelteKit + FastAPI, usando Docker, Postgresql y Redis",
+    technologies: ["PostgreSQL", "Docker", "FastAPI", "SvelteKit", "Redis"],
+    link: "https://github.com/olaracode/fastapi-sveltekit",
+  },
+  {
+    title: "'Chirp' simple red social",
+    description: "Copia basica de twitter, usando Laravel, Intertia y React.js",
+    technologies: ["Laravel", "React", "Typescript"],
+    link: "https://github.com/olaracode/laravel-chirp",
+  },
+  {
+    title: "Aplicacion para toma de notas markdown",
+    description:
+      "Aplicacion sencilla creada usando Rust(Tauri) y SvelteKit para tomar notas en markdown",
+    technologies: ["Rust", "SvelteKit", "Tauri", "TailwindCSS"],
+    link: "https://github.com/olaracode/md-editor",
+  },
+];
+
 export type HeaderT = {
   title: string;
   description: string;
   button: string;
 };
+
 export type AboutT = {
   title: string;
   stack: string[];
@@ -149,9 +194,12 @@ export type CareerT = {
   title: string;
   experiences: WorkExperience[];
 };
+
 export type PortfolioT = {
   title: string;
-  projects: any[];
+  projects: Project[];
+  details: string;
+  linkContent: string;
 };
 
 export type FooterT = {
@@ -160,6 +208,7 @@ export type FooterT = {
   description: string;
   links: string[];
 };
+
 export interface PageContent {
   header: HeaderT;
   about: AboutT;
@@ -172,6 +221,7 @@ type ContentT = {
   en: PageContent;
   es: PageContent;
 };
+
 const content: ContentT = {
   es: {
     header: {
@@ -202,7 +252,9 @@ const content: ContentT = {
     },
     portfolio: {
       title: "Portafolios",
-      projects: [],
+      projects: projectsES,
+      details: "Ver detalles",
+      linkContent: "Ver projecto",
     },
     footer: {
       title: "Conectemos",
@@ -237,63 +289,13 @@ const content: ContentT = {
     },
     career: {
       title: "Work Experience",
-      experiences: [
-        {
-          company: "TripleTen",
-          position: "Programming Tutor",
-          period: "July 2024 - Present",
-          description: [
-            "Provide assistance and support to students in their web development learning process.",
-            "Solve bugs, explain concepts, and guide project implementations.",
-            "Foster autonomy and confidence in students.",
-          ],
-        },
-        {
-          company: "TechneStudioIT",
-          position: "Frontend Developer",
-          period: "March 2023 - February 2024",
-          description: [
-            "Led the frontend development of an innovative application using Next.js, Chakra-UI, and Recoil.js.",
-            "Developed the landing page, corporate pages, user dashboard, digital wallet top-up system, and service payment system.",
-            "Created a datatable to display transaction history.",
-          ],
-        },
-        {
-          company: "YOI",
-          position: "Frontend Developer",
-          period: "April 2022 - April 2023",
-          description: [
-            "Developed the web application ecosystem using Next.js with Chakra-UI.",
-            "Collaborated with the DevOps team for CI/CD and with the backend team to consume APIs.",
-            "Implemented features like consuming articles from a CMS, creating comments, and rating articles.",
-            "Handled user authentication, modified the Chakra-UI theme, and developed a dynamic dashboard.",
-            "Developed a real-time chat with responses and reactions.",
-          ],
-        },
-        {
-          company: "TechneStudioIT",
-          position: "Frontend Developer",
-          period: "June 2022 - October 2022",
-          description: [
-            "Participated in a student management system project for a flight academy using Django, Django-Templates, jQuery, and Bootstrap.",
-            "Contributed to the creation of database models and page design.",
-            "Supported the creation of Django routes.",
-          ],
-        },
-        {
-          company: "4Geeks Academy",
-          position: "Teacher Assistant / Teacher",
-          period: "2022 - 2024",
-          description: [
-            "Assisted students in understanding web development concepts.",
-            "As a Teacher, delivered lectures and supervised students' practical projects.",
-          ],
-        },
-      ],
+      experiences: workExperiencesEN,
     },
     portfolio: {
       title: "Portfolio",
       projects: [],
+      details: "See Details",
+      linkContent: "View Project",
     },
     footer: {
       title: "Let's Connect",

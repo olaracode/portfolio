@@ -49,7 +49,7 @@ function App() {
         </div>
       </div>
 
-      <Showcase />
+      <Showcase content={content.portfolio} />
       <Footer content={content.footer} />
     </>
   );
