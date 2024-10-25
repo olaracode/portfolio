@@ -2,27 +2,30 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { useTranslation } from "react-i18next";
+import LanguageSelectorButtonGroup from "./LanguageSelector";
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { t } = useTranslation();
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-
     window.addEventListener("mousemove", handleMouseMove);
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
-
   return (
     <div
       className="relative h-screen w-full overflow-hidden bg-gray-100 text-gray-900"
       id="#"
     >
       {/* Subtle grain texture */}
+      <div className="absolute top-10 right-10 z-20">
+        <LanguageSelectorButtonGroup />
+      </div>
+
       <div
         className="absolute inset-0 opacity-50"
         style={{
@@ -56,6 +59,7 @@ export default function Hero() {
         <p className="text-xl sm:text-2xl mb-8 max-w-md font-light text-gray-600">
           {t("header.description")}
         </p>
+
         <Link
           to="portfolio"
           spy={true}
