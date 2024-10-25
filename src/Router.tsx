@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FloatingNavBar from "./components/FloatingNav";
-import App from "./App";
-import NotFound from "./components/NotFound";
+import App from "./pages/App";
+import NotFound from "./pages/NotFound";
 
 function Router() {
   return (
