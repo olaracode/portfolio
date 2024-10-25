@@ -11,7 +11,7 @@ export default function NeonMinimalistPortfolioShowcase() {
   }) as ProjectT[];
   return (
     <section
-      className="w-full min-h-screen bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative"
+      className="w-full min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8 overflow-hidden relative"
       id="portfolio"
     >
       <div className="max-w-7xl mx-auto relative z-10">
@@ -26,8 +26,9 @@ export default function NeonMinimalistPortfolioShowcase() {
               className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-lg shadow-lg overflow-hidden cursor-pointer"
               whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
               onClick={() => setSelectedProject(project)}
             >
               <div className="p-8 h-full flex flex-col justify-between">

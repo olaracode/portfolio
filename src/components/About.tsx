@@ -9,12 +9,13 @@ export default function About() {
   const stack = t("about.stack", { returnObjects: true }) as string[];
   return (
     <section
-      className="w-full bg-gray -100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="w-full bg-gray-100 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
       id="about"
     >
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         className="max-w-5xl mx-auto relative"
       >

@@ -35,11 +35,12 @@ const AnimatedBackground = () => (
           top: `${Math.random() * 100}%`,
           left: `${Math.random() * 100}%`,
         }}
-        animate={{
+        whileInView={{
           x: [0, Math.random() * 100 - 50],
           y: [0, Math.random() * 100 - 50],
           opacity: [0.1, 0.3, 0.1],
         }}
+        viewport={{ once: true }}
         transition={{
           duration: Math.random() * 10 + 10,
           repeat: Infinity,
@@ -62,7 +63,8 @@ export default function Footer() {
         <motion.h2
           className="text-4xl font-light mb-12"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           {t("footer.title")}
@@ -97,7 +99,8 @@ export default function Footer() {
         <motion.div
           className="mt-16 text-gray-400"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <p>
