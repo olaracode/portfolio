@@ -1,59 +1,5 @@
 import { techStack } from "./unique";
 
-const workExperiencesEN = [
-  {
-    company: "TripleTen",
-    position: "Programming Tutor",
-    period: "July 2024 - Present",
-    description: [
-      "Provide assistance and support to students in their web development learning process.",
-      "Solve bugs, explain concepts, and guide project implementations.",
-      "Foster autonomy and confidence in students.",
-    ],
-  },
-  {
-    company: "4Geeks Academy",
-    position: "Teacher Assistant / Teacher",
-    period: "March 2023 - July 2024",
-    description: [
-      "Assisted students in understanding web development concepts.",
-      "As a Teacher, delivered lectures and supervised students' practical projects.",
-    ],
-  },
-  {
-    company: "TechneStudioIT",
-    position: "Frontend Developer",
-    period: "March 2023 - February 2024",
-    description: [
-      "Led the frontend development of an innovative application using Next.js, Chakra-UI, and Recoil.js.",
-      "Developed the landing page, corporate pages, user dashboard, digital wallet top-up system, and service payment system.",
-      "Created a datatable to display transaction history.",
-    ],
-  },
-  {
-    company: "YOI",
-    position: "Frontend Developer",
-    period: "April 2022 - April 2023",
-    description: [
-      "Developed the web application ecosystem using Next.js with Chakra-UI.",
-      "Collaborated with the DevOps team for CI/CD and with the backend team to consume APIs.",
-      "Implemented features like consuming articles from a CMS, creating comments, and rating articles.",
-      "Handled user authentication, modified the Chakra-UI theme, and developed a dynamic dashboard.",
-      "Developed a real-time chat with responses and reactions.",
-    ],
-  },
-  {
-    company: "TechneStudioIT",
-    position: "Frontend Developer",
-    period: "June 2022 - October 2022",
-    description: [
-      "Participated in a student management system project for a flight academy using Django, Django-Templates, jQuery, and Bootstrap.",
-      "Contributed to the creation of database models and page design.",
-      "Supported the creation of Django routes.",
-    ],
-  },
-];
-
 const en = {
   header: {
     title: "Octavio Lara",
@@ -79,7 +25,59 @@ const en = {
   },
   career: {
     title: "Work Experience",
-    experiences: workExperiencesEN,
+    experiences: [
+      {
+        company: "TripleTen",
+        position: "Programming Tutor",
+        period: "July 2024 - Present",
+        description: [
+          "Provide assistance and support to students in their web development learning process.",
+          "Solve bugs, explain concepts, and guide project implementations.",
+          "Foster autonomy and confidence in students.",
+        ],
+      },
+      {
+        company: "4Geeks Academy",
+        position: "Teacher Assistant / Teacher",
+        period: "March 2023 - July 2024",
+        description: [
+          "Assisted students in understanding web development concepts.",
+          "As a Teacher, delivered lectures and supervised students' practical projects.",
+        ],
+      },
+      {
+        company: "TechneStudioIT",
+        position: "Frontend Developer",
+        period: "March 2023 - February 2024",
+        description: [
+          "Led the frontend development of an innovative application using Next.js, Chakra-UI, and Recoil.js.",
+          "Developed the landing page, corporate pages, user dashboard, digital wallet top-up system, and service payment system.",
+          "Created a datatable to display transaction history.",
+        ],
+      },
+      {
+        company: "YOI",
+        position: "Frontend Developer",
+        period: "April 2022 - April 2023",
+        description: [
+          "Developed the web application ecosystem using Next.js with Chakra-UI.",
+          "Collaborated with the DevOps team for CI/CD and with the backend team to consume APIs.",
+          "Implemented features like consuming articles from a CMS, creating comments, and rating articles.",
+          "Handled user authentication, modified the Chakra-UI theme, and developed a dynamic dashboard.",
+          "Developed a real-time chat with responses and reactions.",
+        ],
+      },
+      {
+        company: "TechneStudioIT",
+        position: "Frontend Developer",
+        period: "June 2022 - October 2022",
+        description: [
+          "Participated in a student management system project for a flight academy using Django, Django-Templates, jQuery, and Bootstrap.",
+          "Contributed to the creation of database models and page design.",
+          "Supported the creation of Django routes.",
+        ],
+      },
+    ],
   },
   portfolio: {
     title: "Portfolio",

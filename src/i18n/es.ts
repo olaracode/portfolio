@@ -77,7 +77,10 @@ const es = {
       ],
     },
   },
-  career: workExperiencesES,
+  career: {
+    title: "Experiencia Profesional",
+    experiences: workExperiencesES,
+  },
   portfolio: {
     title: "Portafolios",
     projects: [
