@@ -138,6 +138,11 @@ const es = {
     portfolio: "Portafolios",
     contact: "Contacto",
   },
+  "404": {
+    title: "No encontramos la página que buscas",
+    content: "¡Ups! La página que estás buscando no existe o ha sido movida.",
+    link: "Volver a Inicio",
+  },
 } as const;
 
 export default es;
